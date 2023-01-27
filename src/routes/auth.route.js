@@ -1,7 +1,8 @@
 const router = require("express").Router();
+//const SocketLobby = require("../socket/socket");
 const multer = require("multer");
 const storage = multer.diskStorage({
-  destination: "uploads/",
+  destination: "public/uploads/",
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now();
     cb(null, uniqueSuffix + ".png");

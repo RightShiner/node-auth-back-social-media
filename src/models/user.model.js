@@ -76,16 +76,15 @@ class User {
   }
 
   static async findByEmail(email, cb) {
-    const user = await prisma.users.findMany({
+    const user = await prisma.users.findFirst({
       where: { email: email },
     });
-    //console.log(user);
+    console.log(user);
     if (user) {
-      console.log(user);
-      cb("success", null);
+      cb(null, user);
       return;
     } else {
-      cb("err", null);
+      cb("not_found", null);
       return;
     }
     // db.query(findUserByEmailQuery, email, (err, res) => {

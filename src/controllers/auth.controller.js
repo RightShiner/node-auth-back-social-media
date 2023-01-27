@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const { server_ip } = require("../utils/constants");
 
 const {
   hash: hashPassword,
@@ -12,11 +13,12 @@ exports.signup = (req, res) => {
       status: 0,
       message: "The profile image field is required.",
     });
+    return;
   }
   console.log("file exist");
   const { name, email, password, role, phone_no } = req.body;
   const hashedPassword = hashPassword(password.trim());
-  //console.log(`password: ${hashedPassword}`);
+  // console.log(`password: ${hashedPassword}`);
   const profile_image = req.file.filename;
   console.log(profile_image);
 
@@ -129,13 +131,10 @@ exports.signin = (req, res) => {
 // };
 
 exports.login = (req, res) => {
-  console.log(
-    "this is login Controller//////////////////////////////////////////"
-  );
   const { email, password } = req.body;
   User.findByEmail(email.trim(), (err, data) => {
     if (err) {
-      if (err.kind === "not_found") {
+      if (err == "not_found") {
         res.status(404).send({
           status: "error",
           message: `User with email ${email} was not found`,
@@ -151,13 +150,12 @@ exports.login = (req, res) => {
     if (data) {
       if (comparePassword(password.trim(), data.password)) {
         const token = generateToken(data.id);
+        data.access_token = token;
+
+        data.profile_pic = process.env.BASE_URL + "uploads/" + data.profile_pic;
         res.status(200).send({
           status: "success",
-          data: {
-            token,
-            name: data.name,
-            email: data.email,
-          },
+          data,
         });
         return;
       }
