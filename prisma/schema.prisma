@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  // url      = "mysql://root@localhost:3306/socialmediacase-api?schema=public"
+}
+
+model users {
+  id                Int       @id @default(autoincrement())
+  name              String    @db.VarChar(255)
+  email             String    @db.VarChar(255)
+  email_verified_at DateTime? @db.DateTime(0)
+  role_id           Int?      @db.Int
+  password          String?
+  phone_no          String?   @db.VarChar(255)
+  profile_pic       String?   @db.VarChar(255)
+  device_type       String?   @db.VarChar(255)
+  device_token      String?   @db.VarChar(255)
+  remember_token    String?   @db.VarChar(255)
+  created_at        DateTime? @default(now()) @db.DateTime(0)
+  updated_at        DateTime? @default(now()) @db.DateTime(0)
+}

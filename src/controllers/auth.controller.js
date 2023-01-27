@@ -13,7 +13,7 @@ exports.signup = (req, res) => {
       message: "The profile image field is required.",
     });
   }
-  console("file exist");
+  console.log("file exist");
   const { name, email, password, role, phone_no } = req.body;
   const hashedPassword = hashPassword(password.trim());
   //console.log(`password: ${hashedPassword}`);
