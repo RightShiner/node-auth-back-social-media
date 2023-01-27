@@ -2,7 +2,7 @@ const Joi = require("joi");
 const validatorHandler = require("../middlewares/validatorHandler");
 
 const signup = (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const schema = Joi.object().keys({
     name: Joi.string().trim().alphanum().min(3).max(50).required(),
     email: Joi.string().trim().email().required(),
@@ -27,7 +27,6 @@ const signin = (req, res, next) => {
 };
 
 const login = (req, res, next) => {
-  console.log("this is login val");
   const schema = Joi.object().keys({
     email: Joi.string().trim().email().required(),
     password: Joi.string()

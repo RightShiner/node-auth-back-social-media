@@ -13,18 +13,8 @@ class UserPrisma {
         profile_pic: data.profile_image,
       },
     });
-    console.log("this is prisma create");
     return user;
   }
 }
-// create()
-//   .then(async () => {
-//     await prisma.$disconnect();
-//   })
-//   .catch(async (e) => {
-//     console.error(e);
-//     await prisma.$disconnect();
-//     process.exit(1);
-//   });
 
 module.exports = UserPrisma;

@@ -18,10 +18,7 @@ app.use(morgan("combined", { stream: httpLogStream }));
 app.use(cors());
 
 app.use("/api/auth", authRoute);
-app.get("/", function (request, response) {
-  var clientIp = requestIp.getClientIp(request);
-  console.log(clientIp);
-});
+
 app.get("/", (req, res) => {
   res.status(200).send({
     status: "success",
