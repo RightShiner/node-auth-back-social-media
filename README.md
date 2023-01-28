@@ -56,7 +56,7 @@ git clone https://github.com/RightShiner/node-auth-back-social-media.git
 Change to the newly downloaded directory with
 
 ```sh
-cd NodeAuth
+cd node-auth-back-social-media
 ```
 
 Rename the file named `.env.example` to `.env` and update the variable values with valid ones
@@ -65,6 +65,18 @@ Install the required dependencies with
 
 ```sh
 npm install
+```
+
+Prisma deploy
+
+```sh
+npx prisma migrate deploy
+```
+
+Prisma seed
+
+```sh
+npx prisma db seed
 ```
 
 Start the app with
@@ -78,3 +90,5 @@ You can also start it in watch mode with
 ```sh
 npm run start:dev
 ```
+
+You can use email: `z@mail.com` and password: `123456` to login
